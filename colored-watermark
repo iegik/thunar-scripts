@@ -1,0 +1,35 @@
+#!/bin/bash
+# require: xdg-open, zenity, imagemagick
+
+# запросить пользователя выбрать цвет рисунка
+zenity --notification --text="выбрать доминирующий цвет рисунка"
+fg=`zenity --color-selection --show-palette`
+o="${1%%.png}_`echo $fg | sed 's/\#\(.*\)/\1/'`.png"
+
+xdg-open $1
+# выбрать основной цвет заднего плана +-70%
+zenity --notification --text="выбрать цвет заднего плана"
+bg=`zenity --color-selection --show-palette --color=0`
+
+# 3. заменить цвет заднего плана на полностью прозрачный
+#convert "${1%%.png}-2.png" -fuzz 25% -transparent "$bg" $o
+
+# 4. поменять палитру RGB на Grayscale
+#convert $1 -separate -type TrueColorMatte $1
+
+# 5. заменить тёмные пятна на полу-прозрачный цвет
+# (белый, если останется - как заполнитель)
+####convert $o -fuzz 70% -fill "$fg" -opaque "#CCCCCC" $o
+#convert $o -fuzz 70% -fill "$fg" -opaque "#cccccc" $o
+
+# оптимизировать полученное изображение, открыть для просмотра
+#optipng $o
+#xdg-open $o
+
+# Вариант 2
+convert $1 -colorspace gray -type TrueColorMatte -fuzz 30% -transparent "#000000" ${1%%.png}-gs.png
+convert ${1%%.png}-gs.png -fuzz 20% -fill "$fg" -opaque "#cccccc" ${o%%.png}-gs.png
+
+optipng ${o%%.png}-gs.png
+xdg-open ${o%%.png}-gs.png
+
