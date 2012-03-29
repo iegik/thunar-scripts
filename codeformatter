@@ -1,0 +1,3 @@
+#!/bin/bash
+# require: php_beautifier (php-pear), tidy
+tidy -utf8 -i -w 80 -c -q -asxhtml $1 | php_beautifier -s4 -l "ArrayNested() IndentStyles(style=bsd) NewLines(before=if:switch:while:for:foreach:function:T_CLASS:return:break,after=T_COMMENT)"
