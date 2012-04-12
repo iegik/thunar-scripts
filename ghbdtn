@@ -1,0 +1,7 @@
+#!/bin/bash
+cat $1 | sed "y/\`qwertyuiop\[\]asdfghjkl;\'zxcvbnm,\.\//ёйцукенгшщзхъфывапролджэячсмитьбю\./" | zenity --text-info
+cat $1 | sed "y/ёйцукенгшщзхъфывапролджэячсмитьбю\./\`qwertyuiop\[\]asdfghjkl;\'zxcvbnm,\.\//" | zenity --text-info
+cat $1 | sed "y/абвгдеёжзийклмнопрстуфхцчшщъыьэюя/qwertyuiop\[\]asdfghjkl;\'zxcvbnm,\.\//" | zenity --text-info
+cat $1 | sed "y/qwertyuiop\[\]asdfghjkl;\'zxcvbnm,\.\//абвгдеёжзийклмнопрстуфхцчшщъыьэюя/" | zenity --text-info
+cat $1 | sed "y/абвгдеёжзийклмнопрстуфхцчшщъыьэю\.я/йцукенгшщзхъфывапролджэячсмитьбю\.ё/" | zenity --text-info
+cat $1 | sed "y/йцукенгшщзхъфывапролджэячсмитьбю\.ё/абвгдеёжзийклмнопрстуфхцчшщъыьэю\.я/" | zenity --text-info
