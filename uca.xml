@@ -1,2 +1,131 @@
-<?xml encoding="UTF-8" version="1.0"?>
-<actions><action><icon>kdiff3</icon><name>Сравнить</name><command>meld %N</command><description></description><patterns>*</patterns><text-files/></action><action><icon>search</icon><name>Искать</name><command>catfish --fileman=thunar --path=%f</command><description>Search this folder for files using Catfish</description><patterns>*</patterns><directories/></action><action><icon>Terminal</icon><name>Открыть терминал</name><command>exo-open --working-directory %f --launch TerminalEmulator</command><description>Пример особого действия</description><patterns>*</patterns><directories/></action><action><icon>rabbitvcs-cleanup</icon><name>исправить тип</name><command>~/src/scripts/fixmime %F</command><description></description><patterns>*</patterns><audio-files/><image-files/><other-files/><text-files/><video-files/></action><action><icon>media-video</icon><name>конвертировать в mp4</name><command>(ffmpeg -t 30 -i %n -acodec copy -vcodec libx264 -s 1280x720 -threads 2 -crf 24 %{n.???}.mp4) | zenity --progress --text=Конвертирую;</command><description></description><patterns>*.mts,*.MTS</patterns><startup-notify/><video-files/></action><action><icon>media-video</icon><name>быстро в .mpeg</name><command>(n=%n;mencoder -oac lavc -ovc lavc -of lavf -lavcopts aglobal=1:vglobal=1:vcodec=mpeg4:acodec=aac -af lavcresample=24000 -vf harddup -lavfopts format=mp4 -ofps 30000/1001 -vf scale=320:240 -o ${n%%.*}.mpeg %N)|zenity --progress --auto-close --title=&quot;Кодирую в MPEG&quot;;zenity --notification --text=&quot;Завершил кодирование файла(ов): %N в ${n%%.???}.mpeg&quot;</command><description>Быстро склеить и кодировать выбранные файлы в формат MPEG-4</description><patterns>*</patterns><video-files/></action><action><icon>video</icon><name>качественно в .mp4</name><command>(n=%n;mencoder -oac lavc -ovc x264 -of lavf -lavcopts aglobal=1:vglobal=1:acodec=aac -af lavcresample=24000 -vf harddup -lavfopts format=mp4 -ofps 30000/1001 -vf scale=1280:720 -o ${n%%.*}_HD.mp4 %N)|zenity --progress --auto-close --title=&quot;Кодирую в MPEG-4&quot;;zenity --notification --text=&quot;Завершил кодирование файла(ов): %N в ${n%%.*}_HD.mp4&quot;</command><description>Качественно склеить выбранные файлы в формат H.264</description><patterns>*</patterns><video-files/></action><action><icon></icon><name>test</name><command>n=%n;zenity --info --text=&quot;%%f: %f\n%%F: %F\n%%d: %d\n%%D: %D\n%%n: %n\n%%N: %N\nn=%%n;\$\{n%%%%.xxx\}.yyy: ${n%%.MTS}.mp4&quot;</command><description></description><patterns>*</patterns><video-files/></action><action><icon>image-jpeg</icon><name>...в .jpeg</name><command>convert %f %f.jpg</command><description></description><patterns>*</patterns><image-files/></action><action><icon>image-gif</icon><name>...в .gif</name><command>convert %f %f.gif</command><description></description><patterns>*</patterns><image-files/></action><action><icon>image-x-ico</icon><name>...в .ico</name><command>convert %f %f.ico</command><description></description><patterns>*</patterns><image-files/></action><action><icon>applications-graphics</icon><name>colored watermark</name><command>~/src/scripts/colored-watermark %n</command><description></description><patterns>*</patterns><image-files/></action><action><icon>mail-send-receive</icon><name>оптимизировать</name><command>optipng %F</command><description></description><patterns>*</patterns><image-files/></action></actions>
+<actions>
+<action>
+<icon>evolution-tasks</icon>
+<name>Сравнить</name>
+<command>meld %N</command>
+<description/>
+<patterns>*</patterns>
+<text-files/>
+</action>
+<action>
+<icon>search</icon>
+<name>Искать</name>
+<command>catfish --fileman=thunar --path=%f</command>
+<description>Search this folder for files using Catfish</description>
+<patterns>*</patterns>
+<directories/>
+</action>
+<action>
+<icon>Terminal</icon>
+<name>Открыть терминал</name>
+<command>
+exo-open --working-directory %f --launch TerminalEmulator
+</command>
+<description>Пример особого действия</description>
+<patterns>*</patterns>
+<directories/>
+</action>
+<action>
+<icon>rabbitvcs-cleanup</icon>
+<name>исправить тип</name>
+<command>~/src/scripts/fixmime %F</command>
+<description/>
+<patterns>*</patterns>
+<audio-files/>
+<image-files/>
+<other-files/>
+<text-files/>
+<video-files/>
+</action>
+<action>
+<icon>media-video</icon>
+<name>конвертировать в mp4</name>
+<command>
+(ffmpeg -t 30 -i %n -acodec copy -vcodec libx264 -s 1280x720 -threads 2 -crf 24 %{n.???}.mp4) | zenity --progress --text=Конвертирую;
+</command>
+<description/>
+<patterns>*.mts,*.MTS</patterns>
+<startup-notify/>
+<video-files/>
+</action>
+<action>
+<icon>media-video</icon>
+<name>быстро в .mpeg</name>
+<command>
+(n=%n;mencoder -oac lavc -ovc lavc -of lavf -lavcopts aglobal=1:vglobal=1:vcodec=mpeg4:acodec=aac -af lavcresample=24000 -vf harddup -lavfopts format=mp4 -ofps 30000/1001 -vf scale=320:240 -o ${n%%.*}.mpeg %N)|zenity --progress --auto-close --title="Кодирую в MPEG";zenity --notification --text="Завершил кодирование файла(ов): %N в ${n%%.???}.mpeg"
+</command>
+<description>
+Быстро склеить и кодировать выбранные файлы в формат MPEG-4
+</description>
+<patterns>*</patterns>
+<video-files/>
+</action>
+<action>
+<icon>video</icon>
+<name>качественно в .mp4</name>
+<command>
+(n=%n;mencoder -oac lavc -ovc x264 -of lavf -lavcopts aglobal=1:vglobal=1:acodec=aac -af lavcresample=24000 -vf harddup -lavfopts format=mp4 -ofps 30000/1001 -vf scale=1280:720 -o ${n%%.*}_HD.mp4 %N)|zenity --progress --auto-close --title="Кодирую в MPEG-4";zenity --notification --text="Завершил кодирование файла(ов): %N в ${n%%.*}_HD.mp4"
+</command>
+<description>Качественно склеить выбранные файлы в формат H.264</description>
+<patterns>*</patterns>
+<video-files/>
+</action>
+<action>
+<icon/>
+<name>test</name>
+<command>
+n=%n;zenity --info --text="%%f: %f\n%%F: %F\n%%d: %d\n%%D: %D\n%%n: %n\n%%N: %N\nn=%%n;\$\{n%%%%.xxx\}.yyy: ${n%%.MTS}.mp4"
+</command>
+<description/>
+<patterns>*</patterns>
+<video-files/>
+</action>
+<action>
+<icon>image-jpeg</icon>
+<name>...в .jpeg</name>
+<command>convert %f %f.jpg</command>
+<description/>
+<patterns>*</patterns>
+<image-files/>
+</action>
+<action>
+<icon>image-gif</icon>
+<name>...в .gif</name>
+<command>convert %f %f.gif</command>
+<description/>
+<patterns>*</patterns>
+<image-files/>
+</action>
+<action>
+<icon>image-x-ico</icon>
+<name>...в .ico</name>
+<command>convert %f %f.ico</command>
+<description/>
+<patterns>*</patterns>
+<image-files/>
+</action>
+<action>
+<icon>applications-graphics</icon>
+<name>colored watermark</name>
+<command>~/src/scripts/colored-watermark %n</command>
+<description/>
+<patterns>*</patterns>
+<image-files/>
+</action>
+<action>
+<icon>mail-send-receive</icon>
+<name>оптимизировать</name>
+<command>optipng %F</command>
+<description/>
+<patterns>*</patterns>
+<image-files/>
+</action>
+<action>
+<icon>gnome-mime-audio</icon>
+<name>...в .mp3</name>
+<command>ffmpeg -i %f %f.mp3</command>
+<description/>
+<patterns>*</patterns>
+<audio-files/>
+</action>
+</actions>
