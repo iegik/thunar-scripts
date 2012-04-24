@@ -121,6 +121,14 @@ n=%n;zenity --info --text="%%f: %f\n%%F: %F\n%%d: %d\n%%D: %D\n%%n: %n\n%%N: %N\
 <image-files/>
 </action>
 <action>
+<icon>mail-send-receive</icon>
+<name>оптимизировать</name>
+<command>closure-compiler %f | uglifyjs > %f.min.js</command>
+<description/>
+<patterns>*.js</patterns>
+<text-files/>
+</action>
+<action>
 <icon>gnome-mime-audio</icon>
 <name>...в .mp3</name>
 <command>ffmpeg -i %f %f.mp3</command>
